@@ -29,7 +29,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get(apiURL)
+      .get("/")
       .then((user) => {
         console.log(user);
         setUser(user.data);

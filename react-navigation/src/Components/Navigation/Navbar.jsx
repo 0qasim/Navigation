@@ -16,7 +16,7 @@ const Navbar = ({ toggleDrawer, routes }) => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     axios
-      .get("http://localhost:3001/logout")
+      .get("/logout")
       .then((res) => {
         if (res.data === "**Success") navigate(0);
       })

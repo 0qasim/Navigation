@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import styles from "styled-components"
-import { toast,ToastContainer } from "react-toastify";
+import styles from "styled-components";
+import { toast, ToastContainer } from "react-toastify";
 const Signup = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -12,27 +12,37 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/Signup", { name, email, password })
+    axios
+      .post("/Signup", { name, email, password })
       .then((result) => {
         console.log(result);
-        toast.success("Signup successful")
+        toast.success("Signup successful");
 
         Navigate("/Signin");
       })
-      .catch((err) => 
-        console.log(err)
-      );
+      .catch((err) => console.log(err));
   };
 
   return (
-    <div style={{backgroundImage:`url(./043.webp)`,backgroundRepeat:"no-repeat", backgroundSize: "cover",}} className="img-fluid shadow-4  d-flex justify-content-center align-items-center bg-primary vh-100">
-      <div className="bg-white p-3 rounded w-25 "style={{opacity:0.8,color:'black'}}>
-        <ToastContainer/>
+    <div
+      style={{
+        backgroundImage: `url(./043.webp)`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+      className="img-fluid shadow-4  d-flex justify-content-center align-items-center bg-primary vh-100"
+    >
+      <div
+        className="bg-white p-3 rounded w-25 "
+        style={{ opacity: 0.8, color: "black" }}
+      >
+        <ToastContainer />
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           <div className="mb-3 form-group">
             <label className=" form-label">Name</label>
-            <input  style={{fontSize:"17px"}}
+            <input
+              style={{ fontSize: "17px" }}
               required
               autoComplete=""
               type="text"
@@ -44,7 +54,8 @@ const Signup = () => {
           </div>
           <div className=" form-group">
             <label>Email address</label>
-            <input  style={{fontSize:"17px"}}
+            <input
+              style={{ fontSize: "17px" }}
               required
               autoComplete=""
               type="email"
@@ -56,7 +67,8 @@ const Signup = () => {
           </div>
           <div className="mb-3 form-group">
             <label>Password</label>
-            <input  style={{fontSize:"17px"}}
+            <input
+              style={{ fontSize: "17px" }}
               required
               autoComplete=""
               type="password"

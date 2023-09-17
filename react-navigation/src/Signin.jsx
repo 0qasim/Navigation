@@ -13,7 +13,7 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
-  const apiURL = "http://localhost:3001";
+  const apiURL = "/SignIn";
 
   // ...
   const handleSubmit = (e) => {
@@ -28,7 +28,7 @@ const Signin = () => {
       return; // Exit the function to prevent further execution
     }
     axios
-      .post(`${apiURL}/Signin`, { email, password }, { withCredentials: true })
+      .post(apiURL, { email, password }, { withCredentials: true })
       .then((result) => {
         toast.error(result.data);
         console.log(result);
