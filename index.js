@@ -5,6 +5,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 
 //internal imports
 const EmployeeModel = require("./models/Employee.js");
@@ -48,6 +49,16 @@ mongoose
   .catch((err) => {
     console.error(err);
   });
+
+app.use(express.static(path.join(__dirname, "./react-navigation/dist")));
+app.get("*", function (_, res) {
+  res.sendFile(
+    path.join(__dirname, "./react-navigation/dist/index.html"),
+    function (err) {
+      res.status(500).send(err);
+    }
+  );
+});
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
