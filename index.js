@@ -16,7 +16,7 @@ app.use(express.json()); // Use JSON body parsing middleware
 app.use(cookieParser());
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization, X-Requested-With, Accept"
@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
 
 app.use(
   cors({
-    origin: ["http://localhost:5174"],
+    origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: [
@@ -50,10 +50,10 @@ mongoose
     console.error(err);
   });
 
-app.use(express.static(path.join(__dirname, "./react-navigation/dist")));
+app.use(express.static(path.join(__dirname, "./client/build")));
 app.get("*", function (_, res) {
   res.sendFile(
-    path.join(__dirname, "./react-navigation/dist/index.html"),
+    path.join(__dirname, "./client/build/index.html"),
     function (err) {
       res.status(500).send(err);
     }
@@ -78,7 +78,7 @@ const verifyUser = (req, res, next) => {
   });
 };
 
-app.get("/", verifyUser, (req, res) => {
+app.get("/verify", verifyUser, (req, res) => {
   return res.json({ email: req.email, name: req.name });
 });
 
@@ -135,7 +135,7 @@ app.post("/Signup", async (req, res) => {
 
 app.get("/logout", (req, res) => {
   res.clearCookie("token");
-  return res.json("**Success");
+  return res.send("**Success");
 });
 
 app.get("/ok", async (req, res) => {
@@ -148,6 +148,6 @@ app.get("/ok", async (req, res) => {
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server is running on http://localhost:3001");
+app.listen(3002, () => {
+  console.log("Server is running on http://localhost:3002");
 });
