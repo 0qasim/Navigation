@@ -13,7 +13,7 @@ const ExpandMenu = ({ route }) => {
         {route.name}
         {isMenuOpen ? <FaAngleDown /> : <FaAngleDoubleRight />}
       </MenuButton>
-      <SubRoutesContainer isOpen={isMenuOpen}>
+      <SubRoutesContainer isopen={isMenuOpen}>
         {route.subRoutes.map((subRoute) => (
           <SubRoute
             onClick={() => {
@@ -33,7 +33,7 @@ const ExpandMenu = ({ route }) => {
 
 export default ExpandMenu;
 const SubRoutesContainer = styled.div`
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
+  display: ${(props) => (props.isopen ? "flex" : "none")};
   flex-direction: column;
   padding: 1rem;
 `;

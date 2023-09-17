@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ExpandMenu from "./ExpandMenu";
-const Drawer = ({ routes, isOpen, toggleDrawer }) => {
+const Drawer = ({ routes, isopen, toggleDrawer }) => {
   return (
     <div>
-      {isOpen && <BackDrop onClick={toggleDrawer} />}
-      <SDrawer isOpen={isOpen}>
+      {isopen && <BackDrop onClick={toggleDrawer} />}
+      <SDrawer isopen={isopen}>
         <RightNav>
           <SNavbarBrand>-LOGO</SNavbarBrand>
           <NavRoutes>
@@ -54,7 +54,7 @@ const SDrawer = styled.div`
   background-color: white;
   transition: 0.3s ease;
 
-  transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
+  transform: translateX(${(props) => (props.isopen ? "0" : "-100%")});
 `;
 const RightNav = styled.div`
 display:flex;
